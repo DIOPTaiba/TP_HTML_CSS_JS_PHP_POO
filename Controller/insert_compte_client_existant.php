@@ -11,7 +11,7 @@
 	extract($_POST);
 	$date_ouverture = date('yy-m-d h:i:s');
 	$date_changement_etat = date('yy-m-d h:i:s');
-	echo "voici iddd".$id_clients;
+	
 	//Insertion des infortion du compte dans table comptes
 	$comptes = new Comptes($numero_compte, $cle_rib, $solde, $date_ouverture, $numero_agence, $id_clients);
 	$id_comptes = $manager->addComptes($comptes);
@@ -20,7 +20,7 @@
 	$etat_compte = new EtatCompte('actif', $date_changement_etat, $id_comptes);
 	$manager->addEtatCompte($etat_compte);
 
-echo "type_compte = ".$type_compte;
+
 	// Insertion de données selon le type de compte choisit
 	if($type_compte == 'compte epargne')
 	{
@@ -29,8 +29,7 @@ echo "type_compte = ".$type_compte;
 	}
 	else if ($type_compte == 'compte courant')
 	{
-		$compte_courant = new CompteCourant($nom, $prenom, $carte_identite, $profession, $salaire, 
-		$nom_employeur, $adresse_entreprise, $raison_social, $identifiante_entreprise, $id_clients);
+		$compte_courant = new CompteCourant($agios, $id_comptes);
 		$manager->addCompteCourant($compte_courant);
 	}
 	else

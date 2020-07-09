@@ -19,7 +19,7 @@
 				<button id="client_existant" name="client_existant" onclick="affiche_client_existant_moral()">Client Existant</button>
 
 			</div>
-			<form id="saisie_id_client" action="recherche_client_moral.php" method="POST" >
+			<form id="saisie_id_client" action="../Controller/recherche_client_moral.php" method="POST" >
 				<input type="search" id="identifiant_entreprise" name="identifiant_entreprise" placeholder="identifiant client" />
 				<input type="submit" name="search" id="search" value="Search" /> 
 			</form>
@@ -27,7 +27,7 @@
 
 	
 
-	<form id="form_compte_entreprise" action="insert_client_moral.php" method="post" onsubmit="return verifie_formulaire_entreprise(this)">
+	<form id="form_compte_entreprise" action="../Controller/insert_client_moral.php" method="post" onsubmit="return verifie_formulaire_entreprise(this)">
 
 			<h2>VEILLEZ SAISIR LES INFORMATIONS DU CLIENT</h2>
 			<p><i>Complétez le formulaire. Les champs marqué par <em>*</em> sont <em>obligatoires</em></i></p>

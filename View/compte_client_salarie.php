@@ -19,7 +19,7 @@
 				<button id="client_existant" name="client_existant" onclick="affiche_client_existant_salarie()">Client Existant</button>
 
 			</div>
-			<form id="saisie_id_client" action="recherche_client_salarie.php" method="POST" >
+			<form id="saisie_id_client" action="../Controller/recherche_client_salarie.php" method="POST" >
 				<input type="search" id="identifiant_client" name="identifiant_client" placeholder="identifiant client" />
 				<input type="submit" name="search" id="search" value="Search" /> 
 			</form>

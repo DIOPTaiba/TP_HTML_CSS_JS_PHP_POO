@@ -1,93 +1,58 @@
 <?php
 
-// Connexion à la base de données
-include("../Model/connexion_bdd_bp.php");
-require ("../Model/Manager.php");
+	require_once "../Config/autoload.php";
+	require_once ("../Model/connexion_bdd_bp.php");
 
-echo $_POST['type_compte'];
-echo $_POST['id_responsable_compte'];
+	$manager = new Manager($db);
 
-// Insertion des infos dans clients à l'aide d'une requête préparée
-$req = $bdd->prepare('INSERT INTO clients (adresse, telephone, email, date_inscription, type_client, id_responsable_compte) VALUES(:adresse, :telephone, :email, NOW(), :type_client, :id_responsable_compte)');
-$req->execute(array(
-	'adresse' => $_POST['adresse'],
-	'telephone' => $_POST['telephone'],
-	'email' => $_POST['email'],
-	'type_client' => $_POST['type_client'],
-	'id_responsable_compte' => $_POST['id_responsable_compte']
-));
+	extract($_POST);
 
-$req->closeCursor();
+	$date_inscription = date('yy-m-d h:i:s');
+	$date_ouverture = date('yy-m-d h:i:s');
+	$date_changement_etat = date('yy-m-d h:i:s');
 
-//insertion des onfos dans client_non_salarie
-$req = $bdd->prepare('INSERT INTO client_moral (nom_entreprise, raison_social, identifiant_entreprise, id_clients) VALUES(:nom_entreprise, :raison_social, :identifiant_entreprise, :id_clients)');
-$req->execute(array(
-	'nom_entreprise' => $_POST['nom_entreprise'],
-	'raison_social' => 'Simplon.CO',
-	'identifiant_entreprise' => $_POST['identifiant_entreprise'],
-	'id_clients' => 1
-));
+	// Insertion des infos dans la table clients
+	$clients = new Clients ($adresse, $telephone, $email, $date_inscription, $type_client, $id_responsable_compte);
+	$id_clients = $manager->addClients($clients);
 
-	$req->closeCursor();
-
-$req = $bdd->prepare('INSERT INTO comptes (numero_compte, cle_rib, solde, date_ouverture, numero_agence, id_clients) VALUES(:numero_compte, :cle_rib, :solde, NOW(), :numero_agence, :id_clients)');
-$req->execute(array(
-	'numero_compte' => $_POST['numero_compte'],
-	'cle_rib' => $_POST['cle_rib'],
-	'solde' => '200000',
-	'numero_agence' => $_POST['numero_agence'],
-	'id_clients' => 1
-));
-
-$req->closeCursor();
+	//insertion des infos dans la table client Moral
+	$clientMoral = new ClientMoral ($nom_entreprise, $identifiant_entreprise, $raison_social, $id_clients);
+	$manager->addClientMoral($clientMoral);
 
 
-$req = $bdd->prepare('INSERT INTO etat_compte (etat_compte, date_changement_etat, id_comptes) VALUES(:etat_compte, NOW(), :id_comptes)');
-$req->execute(array(
-	'etat_compte' => 'actif',
-	'id_comptes' => 1
-	));
-$req->closeCursor();
+	// Insertion infos sur la tables compte général
+	$comptes = new Comptes($numero_compte, $cle_rib, $solde, $date_ouverture, $numero_agence, $id_clients);
+	$id_comptes = $manager->addComptes($comptes);
 
 
+	// Insertion état comptes lors de leurs créations
+	$etat_compte = new EtatCompte('actif', $date_changement_etat, $id_comptes);
+	$manager->addEtatCompte($etat_compte);
 
-if($_POST['type_compte'] == 'compte epargne')
-{
-	$req = $bdd->prepare('INSERT INTO compte_epargne (frais_ouverture, montant_remuneration, id_comptes) VALUES(:frais_ouverture, :montant_remuneration, :id_comptes)');
-	$req->execute(array(
-		'frais_ouverture' => $_POST['frais_ouverture'],
-		'montant_remuneration' => $_POST['montant_remuneration'],
-		'id_comptes' => 1
-		));
-	$req->closeCursor();
-}
-else if($_POST['type_compte'] == 'compte courant')
-{
-	$req = $bdd->prepare('INSERT INTO compte_courant (agios, id_comptes) VALUES(:agios, :id_comptes)');
-	$req->execute(array(
-		'agios' => $_POST['agios'],
-		'id_comptes' => 1
-		));
-	$req->closeCursor();
-}
-else
-{
-	$req = $bdd->prepare('INSERT INTO compte_bloque (frais_ouverture, montant_remuneration, duree_blocage, id_comptes) VALUES(:frais_ouverture, :montant_remuneration, :duree_blocage, :id_comptes)');
-		$req->execute(array(
-			'frais_ouverture' => $_POST['frais_ouverture'],
-			'montant_remuneration' => $_POST['montant_remuneration'],
-			'duree_blocage' => $_POST['duree_blocage'],
-			'id_comptes' => 1
-			));
-		$req->closeCursor();
-}
+	
+	// Insertion de données selon le type de compte choisit
+	if($type_compte == 'compte epargne')
+	{
+		$compte_epargne = new CompteEpargne($frais_ouverture, $montant_remuneration, $id_comptes);
+		$manager->addCompteEpargne($compte_epargne);
+	}
+	else if ($type_compte == 'compte courant')
+	{
+		$compte_courant = new CompteCourant($agios, $id_comptes);
+		$manager->addCompteCourant($compte_courant);
+	}
+	else
+	{
+		$compte_bloque = new CompteBloque($frais_ouverture, $montant_remuneration, $duree_blocage, $id_comptes);
+		$manager->addCompteBloque($compte_bloque);	
+	}
 
 
-echo "Les informations sont bien enregistrées";
+	echo "Les informations sont bien enregistrées";
 
-// Redirection du visiteur vers la page d'accueil accueil_responsable
+	// Redirection du visiteur vers la page d'accueil accueil_responsable
 
-header('Location: accueil_responsable.php');
+	header('Location: ../View/accueil_responsable.php');
 
 
 ?>

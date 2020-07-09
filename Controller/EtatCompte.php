@@ -21,20 +21,20 @@ class EtatCompte
     public function getIdComptes() { return $this->id_comptes; }
 
     //Définition des Setteurs
-	public function setEtatCompte($etat_compte) 
-	{ 
-		$this->etat_compte = $etat_compte; 
-	}
+	// public function setEtatCompte($etat_compte) 
+	// { 
+	// 	$this->etat_compte = $etat_compte; 
+	// }
 
-	public function setDateChangementEtat($date_changement_etat) 
-	{ 
-		$this->date_changement_etat = $date_changement_etat; 
-    }
+	// public function setDateChangementEtat($date_changement_etat) 
+	// { 
+	// 	$this->date_changement_etat = $date_changement_etat; 
+    // }
     
-    public function setIdComptes($id_comptes) 
-	{ 
-		$this->id_comptes = $id_comptes; 
-	}
+    // public function setIdComptes($id_comptes) 
+	// { 
+	// 	$this->id_comptes = $id_comptes; 
+	// }
    
 
 }

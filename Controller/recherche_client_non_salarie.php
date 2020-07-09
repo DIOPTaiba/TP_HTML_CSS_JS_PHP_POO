@@ -21,33 +21,14 @@
 		$manager = new Manager($db);
 
 		extract($_POST);
-		// $identifiant_client = $_POST['identifiant_client'];
+		
 
-		// $test = $bdd->prepare('SELECT nom FROM client_non_salarie WHERE carte_identite = ? ');
-		// $test->execute(array($identifiant_client));
-
-		// $reponse = $test->fetch();
-		//if($reponse)
-
-		if($id_clients = $manager->verifieClientExiste($identifiant_client))
+		if($id_clients = $manager->verifieClientNonSalarieExiste($identifiant_client))
 		{
-		// 	$req = $bdd->prepare('SELECT client_non_salarie.nom, client_non_salarie.prenom, client_non_salarie.carte_identite, clients.adresse, clients.telephone, clients.email, clients.date_inscription, clients.type_client FROM client_non_salarie INNER JOIN clients ON client_non_salarie.id_clients = clients.id_clients WHERE carte_identite = ?');
-
-		// $req->execute(array($_POST['identifiant_client']));
 
 			$resultat = $manager->getInfoNonSalarie($identifiant_client);
 
-			//while ($resultat = $req->fetch())
-			//  while ($resultat = $manager->getInfoNonSalarie($identifiant_client))
-			// {
-				// echo $resultat['nom'] . '<br />';
-				// echo $resultat['prenom'] . '<br />';
-				// echo $resultat['carte_identite'] . '<br />';
-				// echo $resultat['adresse'] . '<br />';
-				// echo $resultat['telephone'] . '<br />';
-				// echo $resultat['email'] . '<br />';
-				// echo $resultat['date_inscription'] . '<br />';
-				// echo $resultat['type_client'] . '<br />';
+			
 				echo "id_client". $id_clients;
 	?>
 
@@ -86,7 +67,6 @@
 				</div>
 				
 				<div>
-					<label for="id_clients">id_clients </label>
 					<input type="hidden" id="id_clients" name="id_clients" value="<?php echo $id_clients ?>"/>
 				</div>
 			
@@ -151,9 +131,6 @@
 
 	<?php
 
-	//}
-
-		
 		}
 		else{
 			echo 'Aucun client trouvé pour cet identifiant : '. $identifiant_client . '<br />';
@@ -163,8 +140,6 @@
 
 	?>
 
-
-	
 	
 	<script type="text/javascript" src="../Public/script_index.js"></script>
 </body>

@@ -30,10 +30,28 @@
 			$req->closeCursor();
 		}
 
-		public function verifieClientExiste($identifiant_client)
+		public function verifieClientNonSalarieExiste($identifiant_client)
 		{
 			$test = $this->_db->prepare('SELECT id_clients FROM client_non_salarie WHERE carte_identite = ? ');
 			$test->execute(array($identifiant_client));
+
+			$reponse = $test->fetch();
+			return $reponse['id_clients'];
+		}
+
+		public function verifieClientSalarieExiste($identifiant_client)
+		{
+			$test = $this->_db->prepare('SELECT id_clients FROM client_salarie WHERE carte_identite = ? ');
+			$test->execute(array($identifiant_client));
+
+			$reponse = $test->fetch();
+			return $reponse['id_clients'];
+		}
+
+		public function verifieClientMoralExiste($identifiant_entreprise)
+		{
+			$test = $this->_db->prepare('SELECT id_clients FROM client_moral  WHERE identifiant_entreprise = ?');
+			$test->execute(array($identifiant_entreprise));
 
 			$reponse = $test->fetch();
 			return $reponse['id_clients'];
@@ -88,7 +106,23 @@
 			'raison_social' => $clientSalarie->getRaisonSocial(),
 			'identifiant_entreprise' => $clientSalarie->getIdentifianteEntreprise(),
 			'id_clients' => $clientSalarie->getIdClients()
-		));	
+			));	
+		}
+
+		public function addClientMoral(ClientMoral $clientMoral)
+		{
+			//insertion des Infos dans la table client Moral
+			$req = $this->_db->prepare('INSERT INTO client_moral (nom_entreprise, raison_social, 
+			identifiant_entreprise, id_clients) VALUES(:nom_entreprise, :raison_social, 
+			:identifiant_entreprise, :id_clients)');
+			$req->execute(array(
+			'nom_entreprise' => $clientMoral->getNomEntreprise(),
+			'raison_social' => $clientMoral->getRaisonSocial(),
+			'identifiant_entreprise' => $clientMoral->getIdentifiantEntreprise(),
+			'id_clients' => $clientMoral->getIdClient()
+			));
+
+			$req->closeCursor();
 		}
 
 		public function addComptes(Comptes $comptes)
@@ -164,6 +198,38 @@
 			ON client_non_salarie.id_clients = clients.id_clients WHERE carte_identite = ?');
 
 			$req->execute(array($_POST['identifiant_client']));
+
+			return $reponse = $req->fetch();
+
+			$req->closeCursor();
+
+		}
+
+		public function getInfoSalarie($identifiant_client)
+		{
+			$req = $this->_db->prepare('SELECT client_salarie.nom, client_salarie.prenom, 
+			client_salarie.carte_identite, client_salarie.profession, client_salarie.salaire, 
+			client_salarie.nom_employeur, client_salarie.adresse_entreprise, client_salarie.raison_social, 
+			client_salarie.identifiant_entreprise, clients.adresse, clients.telephone, clients.email, 
+			clients.date_inscription, clients.type_client FROM client_salarie INNER JOIN clients 
+			ON client_salarie.id_clients = clients.id_clients WHERE carte_identite = ?');
+
+			$req->execute(array($identifiant_client));
+
+			return $reponse = $req->fetch();
+
+			$req->closeCursor();
+
+		}
+
+		public function getInfoClientMoral($identifiant_entreprise)
+		{
+			$req = $this->_db->prepare('SELECT client_moral.nom_entreprise, client_moral.raison_social, 
+			client_moral.identifiant_entreprise, clients.adresse, clients.telephone, clients.email, 
+			clients.date_inscription, clients.type_client FROM client_moral INNER JOIN clients ON 
+			client_moral.id_clients = clients.id_clients WHERE identifiant_entreprise = ?');
+
+			$req->execute(array($identifiant_entreprise));
 
 			return $reponse = $req->fetch();
 

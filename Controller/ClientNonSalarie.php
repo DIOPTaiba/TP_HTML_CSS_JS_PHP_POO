@@ -22,25 +22,25 @@ class ClientNonSalarie
 	public function getCarteIdentite() { return $this->carte_identite; }
 	public function getIdClient() { return $this->id_clients; }
 
-	public function setNom($nom) 
-	{ 
-		$this->nom = $nom; 
-	}
+	// public function setNom($nom) 
+	// { 
+	// 	$this->nom = $nom; 
+	// }
 
-	public function setPrenom($prenom) 
-	{ 
-		$this->prenom = $prenom; 
-	}
+	// public function setPrenom($prenom) 
+	// { 
+	// 	$this->prenom = $prenom; 
+	// }
 
-	public function setCarteIdentite($carte_identite) 
-	{ 
-		$this->carte_identite = $carte_identite; 
-	}
+	// public function setCarteIdentite($carte_identite) 
+	// { 
+	// 	$this->carte_identite = $carte_identite; 
+	// }
 
-	public function setIdClient($id_clients) 
-	{ 
-		$this->id_clients = $id_clients; 
-	}
+	// public function setIdClient($id_clients) 
+	// { 
+	// 	$this->id_clients = $id_clients; 
+	// }
    
 
 }

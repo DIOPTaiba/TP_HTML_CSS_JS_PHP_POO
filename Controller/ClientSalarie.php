@@ -44,55 +44,55 @@
         public function getIdClients() { return $this->_id_clients; }
 
         //Définition des setteurs
-        public function setNom($nom) 
-        { 
-            $this->_nom = $nom; 
-        }
+        // public function setNom($nom) 
+        // { 
+        //     $this->_nom = $nom; 
+        // }
 
-        public function setPrenom($prenom) 
-        { 
-            $this->_prenom = $prenom; 
-        }
+        // public function setPrenom($prenom) 
+        // { 
+        //     $this->_prenom = $prenom; 
+        // }
 
-        public function setCarteIdentite($carte_identite) 
-        { 
-            $this->_carte_identite = $carte_identite; 
-        }
+        // public function setCarteIdentite($carte_identite) 
+        // { 
+        //     $this->_carte_identite = $carte_identite; 
+        // }
 
-        public function setProfession($profession) 
-        { 
-            $this->_profession = $profession; 
-        }
+        // public function setProfession($profession) 
+        // { 
+        //     $this->_profession = $profession; 
+        // }
         
-        public function setSalaire($salaire) 
-        { 
-            $this->_salaire = $salaire; 
-        }
+        // public function setSalaire($salaire) 
+        // { 
+        //     $this->_salaire = $salaire; 
+        // }
         
-        public function setNomEmployeur($nom_employeur) 
-        { 
-            $this->_nom_employeur = $nom_employeur; 
-        }
+        // public function setNomEmployeur($nom_employeur) 
+        // { 
+        //     $this->_nom_employeur = $nom_employeur; 
+        // }
         
-        public function setAdresseEntreprise($adresse_entreprise) 
-        { 
-            $this->_adresse_entreprise = $adresse_entreprise; 
-        }
+        // public function setAdresseEntreprise($adresse_entreprise) 
+        // { 
+        //     $this->_adresse_entreprise = $adresse_entreprise; 
+        // }
         
-        public function setRaisonSocial($raison_social) 
-        { 
-            $this->_raison_social = $raison_social; 
-        }
+        // public function setRaisonSocial($raison_social) 
+        // { 
+        //     $this->_raison_social = $raison_social; 
+        // }
         
-        public function setIdentifiantEntreprise($identifiant_entreprise) 
-        { 
-            $this->_identifiant_entreprise = $identifiant_entreprise; 
-        }
+        // public function setIdentifiantEntreprise($identifiant_entreprise) 
+        // { 
+        //     $this->_identifiant_entreprise = $identifiant_entreprise; 
+        // }
         
-        public function setIdClients($id_clients) 
-        { 
-            $this->_id_clients = $id_clients; 
-        }
+        // public function setIdClients($id_clients) 
+        // { 
+        //     $this->_id_clients = $id_clients; 
+        // }
     
 
 

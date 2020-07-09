@@ -30,36 +30,34 @@ class Clients
     public function getIdResponsableCompte() { return $this->id_responsable_compte; }
 
     //Définition des Setteurs
-	public function setAdresse($adresse) 
-	{ 
-		$this->adresse = $adresse; 
-	}
+	// public function setAdresse($adresse) 
+	// { 
+	// 	$this->adresse = $adresse; 
+	// }
 
-	public function setTelephone($telephone) 
-	{ 
-		$this->telephone = $telephone; 
-	}
+	// public function setTelephone($telephone) 
+	// { 
+	// 	$this->telephone = $telephone; 
+	// }
 
-	public function setEmail($email) 
-	{ 
-		$this->email = $email; 
-	}
+	// public function setEmail($email) 
+	// { 
+	// 	$this->email = $email; 
+	// }
 
-	public function setTypeClient($type_client) 
-	{ 
-		$this->type_client = $type_client; 
-	}
+	// public function setTypeClient($type_client) 
+	// { 
+	// 	$this->type_client = $type_client; 
+	// }
 
-	public function setDateInscription($date_inscription) 
-	{ 
-		$this->date_inscription = $date_inscription; 
-    }
+	// public function setDateInscription($date_inscription) 
+	// { 
+	// 	$this->date_inscription = $date_inscription; 
+    // }
     
-    public function setIdResponsableCompte($id_responsable_compte) 
-	{ 
-		$this->id_responsable_compte = $id_responsable_compte; 
-	}
+    // public function setIdResponsableCompte($id_responsable_compte) 
+	// { 
+	// 	$this->id_responsable_compte = $id_responsable_compte; 
+	// }
    
-
-
 }

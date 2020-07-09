@@ -24,25 +24,25 @@ class CompteBloque
     public function getIdComptes() { return $this->id_comptes; }
 
     //Définition des Setteurs
-	public function setFraisOuverture($frais_ouverture) 
-	{ 
-		$this->frais_ouverture = $frais_ouverture; 
-	}
+	// public function setFraisOuverture($frais_ouverture) 
+	// { 
+	// 	$this->frais_ouverture = $frais_ouverture; 
+	// }
 
-	public function setMontantRemuneration($montant_remuneration) 
-	{ 
-		$this->montant_remuneration = $montant_remuneration; 
-    }
+	// public function setMontantRemuneration($montant_remuneration) 
+	// { 
+	// 	$this->montant_remuneration = $montant_remuneration; 
+    // }
     
-    public function setDureeBlocage($duree_blocage) 
-	{ 
-		$this->duree_blocage = $duree_blocage; 
-    }
+    // public function setDureeBlocage($duree_blocage) 
+	// { 
+	// 	$this->duree_blocage = $duree_blocage; 
+    // }
     
-    public function setIdComptes($id_comptes) 
-	{ 
-		$this->id_comptes = $id_comptes; 
-	}
+    // public function setIdComptes($id_comptes) 
+	// { 
+	// 	$this->id_comptes = $id_comptes; 
+	// }
    
 
 }

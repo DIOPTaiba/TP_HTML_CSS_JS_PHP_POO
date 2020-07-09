@@ -35,30 +35,30 @@ class Comptes
 		$this->numero_compte = $numero_compte; 
 	}
 
-	public function setCleRib($cle_rib) 
-	{ 
-		$this->cle_rib = $cle_rib; 
-	}
+	// public function setCleRib($cle_rib) 
+	// { 
+	// 	$this->cle_rib = $cle_rib; 
+	// }
 
-	public function setSolde($solde) 
-	{ 
-		$this->solde = $solde; 
-	}
+	// public function setSolde($solde) 
+	// { 
+	// 	$this->solde = $solde; 
+	// }
 
-	public function setNumeroAgence($numero_agence) 
-	{ 
-		$this->numero_agence = $numero_agence; 
-	}
+	// public function setNumeroAgence($numero_agence) 
+	// { 
+	// 	$this->numero_agence = $numero_agence; 
+	// }
 
-	public function setDateOuverture($date_ouverture) 
-	{ 
-		$this->date_ouverture = $date_ouverture; 
-    }
+	// public function setDateOuverture($date_ouverture) 
+	// { 
+	// 	$this->date_ouverture = $date_ouverture; 
+    // }
     
-    public function setIdClients($id_clients) 
-	{ 
-		$this->id_clients = $id_clients; 
-	}
+    // public function setIdClients($id_clients) 
+	// { 
+	// 	$this->id_clients = $id_clients; 
+	// }
    
 
 }

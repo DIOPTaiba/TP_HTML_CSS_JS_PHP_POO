@@ -30,7 +30,7 @@
 	$etat_compte = new EtatCompte('actif', $date_changement_etat, $id_comptes);
 	$manager->addEtatCompte($etat_compte);
 
-echo "type_compte = ".$type_compte;
+
 	// Insertion de données selon le type de compte choisit
 	if($type_compte == 'compte epargne')
 	{
